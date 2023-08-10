@@ -2,7 +2,7 @@
 
 require_relative "apparatus/version"
 
-class Apparatus
+module Apparatus
   class Entity
     attr_accessor :components
 
@@ -32,30 +32,32 @@ class Apparatus
     end
   end
 
-  attr_reader :entities, :systems
+  class Body
+    attr_reader :entities, :systems
 
-  def initialize
-    @entities = []
-    @systems = []
-  end
+    def initialize
+      @entities = []
+      @systems = []
+    end
 
-  def add_system(system_class)
-    systems << system_class.new(self, entities)
-  end
+    def add_system(system_class)
+      systems << system_class.new(self, entities)
+    end
 
-  def add_systems(*list)
-    list.each { add_system(_1) }
-  end
+    def add_systems(*list)
+      list.each { add_system(_1) }
+    end
 
-  def add_entity(entity)
-    entities << entity
-  end
+    def add_entity(entity)
+      entities << entity
+    end
 
-  def add_entities(*list)
-    list.each { add_entity(_1) }
-  end
+    def add_entities(*list)
+      list.each { add_entity(_1) }
+    end
 
-  def run
-    systems.each(&:run)
+    def run
+      systems.each(&:run)
+    end
   end
 end
