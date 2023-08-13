@@ -162,7 +162,7 @@ I think you should notice some positive things about the basic example:
 
 This is not THE SOLUTION.
 
-This gem is not meant to be used always, everywhere. It specifically shines when you have suspicion that the incoming feature will be extremely volatile (will change a lot, will receive a lot of feature requests, the complexity of business logic will grow over time, etc).
+This gem is not meant to be used always, everywhere. It shines when you have suspicion that the incoming feature will be extremely volatile (business logic will change a lot or complexity will grow, there might be a lot of feature requests, etc).
 
 ## Drawbacks in the implementation
 
