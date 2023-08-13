@@ -94,7 +94,7 @@ class PrintShippingMethods < System
 
       next if enabled && !enabled.value
 
-      puts "#{name.value} (#{price.value})"
+      puts "#{name.value} (#{price.value} €)"
     end
   end
 end
