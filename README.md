@@ -1,12 +1,12 @@
 # What is apparatus?
 
-Have you ever worked on code that evolves so quickly that not only it gives you anxiety, but it becomes technical debt over time?
+Have you ever worked on code that evolves so quickly that not only it gives you anxiety, but becomes technical debt over time?
 
-Apparatus is a very simple architectural way to solve this. It uses composition over inheritance and is a (very) simplified ECS (entity-component-system) implementation.
+Apparatus is a very simple architectural way to solve this. It uses composition over inheritance and is a (very) simple ECS (entity-component-system) implementation.
 
 ## What does it do?
 
-It ensures your complex parts code are highly structured and easy to understand and modify:
+It ensures your complex code parts are highly structured and easy to understand and modify:
 - code is organized and tidy by default
 - data is always separated from logic
 - adding, removing, modifying data and logic is easy
@@ -40,7 +40,7 @@ gem "apparatus"
 
 ### Basic example
 
-Let's build code that outputs shipping choices to the standard output.
+Let's build code that outputs delivery methods to the standard output. We have a imaginary cart and three shipping methods.
 
 ```ruby
 require "apparatus"
@@ -99,7 +99,7 @@ class PrintShippingMethods < System
   end
 end
 
-class EnsurePigeonDeliveryAvailable < System
+class EnableDeliveryMethods < System
   def run
     cart = entities.find { _1.has?(:type) && _1[:type].value.to_s == "cart" }
 
@@ -123,7 +123,7 @@ apparatus = Apparatus::Body.new
 
 apparatus.add_entities(delivery, pickup, pigeon, cart)
 apparatus.add_systems(
-  EnsurePigeonDeliveryAvailable,
+  EnableDeliveryMethods,
   PrintShippingMethods
 )
 
@@ -139,7 +139,7 @@ Pickup in closest store (0.0)
 
 Delivery by pigeon is missing, because the cart weight is too heavy and pigeon cannot bring you (imaginary) package.
 
-However if you comment the line `EnsurePigeonDeliveryAvailable,` and run the code again, the output changes to:
+However if you comment the line `EnableDeliveryMethods,` and run the code again, the output changes to:
 ```
 Delivery by courier (3.99)
 Pickup in closest store (0.0)
