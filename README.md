@@ -146,6 +146,36 @@ Pickup in closest store (0.0)
 Delivery by pigeon (50.0)
 ```
 
+## Noteworthy things about basic example
+
+I think you should notice some positive things about basic example:
+- Component classes are really simple classes that can be of any shape that is useful to you. I chose `Struct`, but it can be anything: custom class, String, Integer, etc.
+- An entity is just a collection of components
+- A system just processes entities one by one
+- When apparatus is run, I just run each system one by one
+- Nowhere did I call a loose method on a data object: data is data and has no logic; all logic lies within systems
+- I can easily disable any amount of systems if needed without breaking the apparatus
+
+## What apparatus is not
+
+This is not THE SOLUTION.
+
+This gem is not meant to be used always, everywhere. It specifically shines when you have suspicion that the incoming feature will be extremely volatile (will change a lot, will receive a lot of feature requests, etc).
+
+## Drawbacks in the implementation
+
+If you check the code, it is absurdly simple, this README does more than the code. However, since this is a basic ECS implementation, it lacks some of ECS features:
+- There are no cached queries or queries themselves
+- Each system might iterate through all entities at least once, this is suboptimal, but not tragic in web requests
+- If you have not encountered ECS, then apparatus might seem strange
+
+## Alternatives
+
+There are alternatives that have a lot more features:
+- (https://github.com/guitsaru/draco)[https://github.com/guitsaru/draco]
+- (https://github.com/ged/chione)[https://github.com/ged/chione]
+- (https://github.com/jtuttle/baku)[https://github.com/jtuttle/baku]
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
