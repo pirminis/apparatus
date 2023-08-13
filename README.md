@@ -167,6 +167,7 @@ This gem is not meant to be used always, everywhere. It shines when you have sus
 ## Drawbacks in the implementation
 
 If you check the source code of this gem, it is absurdly simple. However, with simplicity come the drawbacks:
+- No magic
 - No queries or cached queries
 - Almost no helper methods
 - If you have not encountered ECS, then apparatus might seem strange
