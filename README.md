@@ -175,9 +175,9 @@ If you check the source code of this gem, it is absurdly simple. However, with s
 ## Alternatives
 
 There are alternatives that have a lot more features:
-- (https://github.com/guitsaru/draco)[https://github.com/guitsaru/draco]
-- (https://github.com/ged/chione)[https://github.com/ged/chione]
-- (https://github.com/jtuttle/baku)[https://github.com/jtuttle/baku]
+- https://github.com/guitsaru/draco
+- https://github.com/ged/chione
+- https://github.com/jtuttle/baku
 
 ## Development
 
