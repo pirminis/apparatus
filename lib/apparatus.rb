@@ -27,8 +27,15 @@ module Apparatus
     attr_reader :apparatus, :entities
 
     def initialize(apparatus, entities)
+      raise TypeError, %(Expected 'apparatus' to be Apparatus::Body, got #{apparatus.class.inspect} instead) if !apparatus.is_a?(Apparatus::Body)
+      raise TypeError, %(Expected 'entities' to be Array, got #{entities.class.inspect} instead) if !entities.is_a?(Array)
+
       @apparatus = apparatus
       @entities = entities
+    end
+
+    def run
+      raise StandardError, "Please define 'run' method"
     end
   end
 
