@@ -3,7 +3,6 @@ RSpec.describe Apparatus::Entity do
     it "creates an instance" do
       entity = described_class.new
 
-      expect(entity).to be_a(described_class)
       expect(entity.components).to be_a(Hash)
       expect(entity.components).to be_empty
     end

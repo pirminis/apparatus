@@ -4,9 +4,7 @@ RSpec.describe Apparatus::System do
       apparatus = Apparatus::Body.new
       entities = []
 
-      system = described_class.new(apparatus, entities)
-
-      expect(system).to be_a(described_class)
+      expect { described_class.new(apparatus, entities) }.not_to raise_error
     end
 
     it "checks argument types" do

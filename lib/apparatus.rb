@@ -33,13 +33,11 @@ module Apparatus
       @apparatus = apparatus
       @entities = entities
     end
-
-    def run
-      raise StandardError, "Please define 'run' method"
-    end
   end
 
   class Body
+    class SystemHierarchyError < StandardError; end
+
     attr_reader :entities, :systems
 
     def initialize
@@ -48,6 +46,10 @@ module Apparatus
     end
 
     def add_system(system_class)
+      raise NoMethodError, "Expected a public instance method 'run' to be defined, but it was not" if !system_class.public_instance_methods.include?(:run)
+
+      raise SystemHierarchyError, "System is expected to extend 'Apparatus::System', but did not" if !(system_class < Apparatus::System)
+
       systems << system_class.new(self, entities)
     end
 
