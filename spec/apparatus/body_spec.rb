@@ -86,4 +86,50 @@ RSpec.describe Apparatus::Body do
       expect { apparatus.add_entities(person, table) }.to change { apparatus.entities.size }.from(0).to(2)
     end
   end
+
+  class DoubleThePrice < Apparatus::System
+    def run
+      entities.each do |entity|
+        next unless entity.has?(:price)
+
+        entity[:price] *= 2.0
+      end
+    end
+  end
+
+  class ShowItems < Apparatus::System
+    def run
+      puts "Items:"
+
+      entities.each do |entity|
+        next unless entity.has?(:name, :price)
+
+        puts "  #{entity[:name]} ($#{entity[:price]})"
+      end
+    end
+  end
+
+  describe "#run" do
+    it "runs systems" do
+      green_apple = Apparatus::Entity.new({
+        name: "Apple",
+        color: "green"
+      })
+
+      brown_table = Apparatus::Entity.new({
+        name: "Table",
+        color: "brown",
+        price: 15.0
+      })
+
+      apparatus = described_class.new
+      apparatus.add_entities(green_apple, brown_table)
+      apparatus.add_systems(DoubleThePrice, ShowItems)
+
+      expect { apparatus.run }.to output(<<~OUTPUT).to_stdout
+        Items:
+          Table ($30.0)
+      OUTPUT
+    end
+  end
 end
