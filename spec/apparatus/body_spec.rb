@@ -6,9 +6,9 @@ class TestSystem2 < Apparatus::System
   def run; end
 end
 
-class BadTestSystemNoRunMethod < Apparatus::System; end
+class NoRunSystem < Apparatus::System; end
 
-class BadTestSystemNoApparatusSystem
+class NotApparatusSystem
   def run; end
 end
 
@@ -32,13 +32,13 @@ RSpec.describe Apparatus::Body do
     it "raises error if system has no #run method" do
       apparatus = described_class.new
 
-      expect { apparatus.add_system(BadTestSystemNoRunMethod) }.to raise_error(NoMethodError)
+      expect { apparatus.add_system(NoRunSystem) }.to raise_error(NoMethodError)
     end
 
     it "raises error if 'Apparatus::System' is not included in the class hierarchy" do
       apparatus = described_class.new
 
-      expect { apparatus.add_system(BadTestSystemNoApparatusSystem) }.to raise_error(Apparatus::Body::SystemHierarchyError)
+      expect { apparatus.add_system(NotApparatusSystem) }.to raise_error(Apparatus::Body::SystemHierarchyError)
     end
   end
 
