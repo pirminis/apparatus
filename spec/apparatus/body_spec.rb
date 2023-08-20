@@ -12,10 +12,32 @@ class NotApparatusSystem
   def run; end
 end
 
+class DoubleThePrice < Apparatus::System
+  def run
+    entities.each do |entity|
+      next unless entity.has?(:price)
+
+      entity[:price] *= 2.0
+    end
+  end
+end
+
+class ShowItems < Apparatus::System
+  def run
+    puts "Items:"
+
+    entities.each do |entity|
+      next unless entity.has?(:name, :price)
+
+      puts "  #{entity[:name]} ($#{entity[:price]})"
+    end
+  end
+end
+
 RSpec.describe Apparatus::Body do
   describe "#initialize" do
     it "creates an instance" do
-      apparatus = Apparatus::Body.new
+      apparatus = described_class.new
 
       expect(apparatus.entities).to be_a(Array)
       expect(apparatus.systems).to be_a(Array)
@@ -84,28 +106,6 @@ RSpec.describe Apparatus::Body do
       apparatus = described_class.new
 
       expect { apparatus.add_entities(person, table) }.to change { apparatus.entities.size }.from(0).to(2)
-    end
-  end
-
-  class DoubleThePrice < Apparatus::System
-    def run
-      entities.each do |entity|
-        next unless entity.has?(:price)
-
-        entity[:price] *= 2.0
-      end
-    end
-  end
-
-  class ShowItems < Apparatus::System
-    def run
-      puts "Items:"
-
-      entities.each do |entity|
-        next unless entity.has?(:name, :price)
-
-        puts "  #{entity[:name]} ($#{entity[:price]})"
-      end
     end
   end
 
