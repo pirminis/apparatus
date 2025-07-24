@@ -4,7 +4,7 @@ Have you ever worked on code that evolves so quickly that not only it gives you 
 
 Apparatus is a very simple architectural way to solve this. It uses composition over inheritance and is a (very) simple ECS (entity-component-system) implementation.
 
-It decouples data and logic.
+It decouples logic from data.
 
 ## What does it do?
 
