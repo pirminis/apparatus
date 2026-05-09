@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    apparatus (0.1.2)
+    apparatus (0.3.0)
 
 GEM
   remote: https://rubygems.org/
@@ -65,6 +65,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-25
 
 DEPENDENCIES
   apparatus!

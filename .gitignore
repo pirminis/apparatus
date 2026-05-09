@@ -4,11 +4,11 @@
 /coverage/
 /doc/
 /pkg/
-/spec/reports/
-/tmp/
+/*.gem
 
 # rspec failure tracking
 .rspec_status
 
-/tags*
-/*.gem
+# ctags
+tags
+.tags
